@@ -10,6 +10,22 @@
 
 新翻译通过对比差异之后翻译自官方日文本地化(汉化由deepseek完成)
 
+# 使用
+
+在[这里](https://github.com/cueavyqwp/vmi18n/releases/latest)下载最新版
+
+安装时会重启`VMware`,确保没在运行虚拟机
+
+解压后使用管理员权限运行(用于在`C:\Program Files`目录下写入文件)
+
+`右键VMware快捷方式`>`打开文件的所在位置`>`复制`>`右键粘贴到脚本`
+
+一路回车即可
+
+# 安全性?
+
+原理就在[下面](#原理),你不想用就不用呗￣へ￣
+
 # 原理
 
 `[安装目录]\VMware\VMware Workstation\messages` 下的文件夹用于存放不同语言的本地化文件
