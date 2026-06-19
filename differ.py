@@ -11,7 +11,7 @@ def vmsg_load(path: str) -> dict[str, str]:
         for line in fp.readlines():
             if "=" not in line:
                 continue
-            key, _, value = line.partition("=")
+            key, _, value = line.partition("#")[0].partition("=")
             key = key.rstrip()
             value = value.lstrip()
             ret[key] = value
@@ -71,10 +71,9 @@ if __name__ == "__main__":
     print("将initool复制至: `out/initool`")
     shutil.copyfile("replace/安装汉化.bat", "out/安装汉化.bat")
     print("将安装脚本复制至: `out/安装汉化.bat`")
-    # TODO: 还未汉化dll,先用旧版的,记得将`base`改成`replace`
-    # TODO: 复制时计算哈希值,保存至批处理方便安装时校验文件
-    shutil.copyfile("base/vmappsdk-zh_CN.dll", "out/zh_CN/vmappsdk-zh_CN.dll")
-    shutil.copyfile("base/vmui-zh_CN.dll", "out/zh_CN/vmui-zh_CN.dll")
+    # TODO: 复制时计算哈希值,保存至批处理方便安装时校验文件 <=(不想弄了)
+    shutil.copyfile("replace/vmappsdk-zh_CN.dll", "out/zh_CN/vmappsdk-zh_CN.dll")
+    shutil.copyfile("replace/vmui-zh_CN.dll", "out/zh_CN/vmui-zh_CN.dll")
     print(
         "将dll文件复制至: `out/zh_CN/vmappsdk-zh_CN.dll` 与 `out/zh_CN/vmui-zh_CN.dll`"
     )

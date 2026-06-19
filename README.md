@@ -10,6 +10,14 @@
 
 新翻译通过对比差异之后翻译自官方日文本地化(汉化由deepseek完成)
 
+dll文件修改于官方日文本地化,翻译使用旧版官方中文(兼容性有待确认)
+
+截至目前翻译基于`26.0.0.25388281`
+
+# 已知问题
+
+`关于VMware Workstation`,`VMware Workstation`与`Pro`之间有个`111`(产品信息那里也有)
+
 # 使用
 
 在[这里](https://github.com/cueavyqwp/vmi18n/releases/latest)下载最新版
@@ -38,14 +46,14 @@
 
 在`%APPDATA%\VMware`下的`preferences.ini`添加`pref.locale = "zh_CN"`能使其使用简体中文的本地化文件
 
-# 说明
+# 结构说明
 
 - `base`: `17.6.4 build-24832109`版本的官方简体中文翻译文件
 - `new`: 新版本的日文官方本地化文件
 - `replace`: 用于合并的`vmware.vmsg`与安装脚本等
 - `out`: 执行`differ.py`后生成的汉化补丁文件
 
-# 自行生成
+# 自行修改
 
 替换`new\vmware.vmsg`为`[安装目录]\VMware\VMware Workstation\messages\ja`下的`vmware.vmsg`
 
@@ -56,6 +64,14 @@
 再次运行`differ.py`
 
 你需要的文件会在`out`文件夹下
+
+修改dll文件你需要使用`ResourceHacker`
+
+复制`[安装目录]\VMware\VMware Workstation\messages\ja`下的dll文件,并将`-ja`改为`-zh_CN`
+
+修改`版本信息`,`清单`,`快捷键`,`对话框`,`菜单`,`字串表`,具体参考`base`下的旧版官方的简体中文格式
+
+编译版本信息时`BLOCK`哪里可能会报错,把后边字符里的`0x`去除再编译即可
 
 # 鸣谢
 
