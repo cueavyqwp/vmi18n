@@ -24,7 +24,9 @@
 
 # 安全性?
 
-原理就在[下面](#原理),你不想用就不用呗￣へ￣
+本项目使用MIT协议开源
+
+原理就在[下面](#原理),你不想用就自己弄呗￣へ￣
 
 # 原理
 
@@ -57,7 +59,7 @@
 
 # 鸣谢
 
-- [dbohdan/initool](https://github.com/dbohdan/initool): 用于读写ini,项目内直接包含了其二进制文件,以及开源协议
+- [dbohdan/initool](https://github.com/dbohdan/initool): 用于读写ini,项目内直接包含了其二进制文件,以及开源协议(MIT)
 - [wzsx150/ResourceHacker_CN](https://github.com/wzsx150/ResourceHacker_CN): `ResourceHacker`的汉化,同时也感谢原作者
 - [gandli/vmware-downloads](https://github.com/gandli/vmware-downloads): 提供`VMware`的下载链接
 - [Kuroba-Sayuki/VMware-Workstation-Chinese-Localization](https://github.com/Kuroba-Sayuki/VMware-Workstation-Chinese-Localization): 汉化思路参考
