@@ -12,7 +12,7 @@
 
 dll文件修改于官方日文本地化,翻译使用旧版官方中文(兼容性有待确认)
 
-截至目前翻译基于`26.0.0.25388281`
+截至目前翻译基于`26.0.1.25688693`
 
 # 已知问题
 
@@ -22,19 +22,13 @@ dll文件修改于官方日文本地化,翻译使用旧版官方中文(兼容性
 
 在[这里](https://github.com/cueavyqwp/vmi18n/releases/latest)下载最新版
 
-安装时会重启`VMware`,确保没在运行虚拟机
+安装时会重启`VMware Workstation`,确保没在运行虚拟机
 
-解压后使用管理员权限运行(用于在`C:\Program Files`目录下写入文件)
+解压后使用管理员权限运行(用于在`C:\Program Files`目录下写入/删除文件)
 
-`右键VMware快捷方式`>`打开文件的所在位置`>`复制`>`右键粘贴到脚本`
+`右键VMware Workstation快捷方式`>`打开文件的所在位置`>`复制`>`右键粘贴到脚本`
 
-一路回车即可
-
-# 安全性?
-
-本项目使用MIT协议开源
-
-原理就在[下面](#原理),你不想用就自己弄呗￣へ￣
+然后回车等待即可
 
 # 原理
 
@@ -49,9 +43,9 @@ dll文件修改于官方日文本地化,翻译使用旧版官方中文(兼容性
 # 结构说明
 
 - `base`: `17.6.4 build-24832109`版本的官方简体中文翻译文件
-- `new`: 新版本的日文官方本地化文件
+- `current`: 新版本的日文官方本地化文件
 - `replace`: 用于合并的`vmware.vmsg`与安装脚本等
-- `out`: 执行`differ.py`后生成的汉化补丁文件
+- `dist`: 执行`differ.py`后生成的汉化补丁文件
 
 # 自行修改
 
@@ -63,7 +57,7 @@ dll文件修改于官方日文本地化,翻译使用旧版官方中文(兼容性
 
 再次运行`differ.py`
 
-你需要的文件会在`out`文件夹下
+你需要的文件会在`dist`文件夹下
 
 修改dll文件你需要使用`ResourceHacker`
 
@@ -73,10 +67,19 @@ dll文件修改于官方日文本地化,翻译使用旧版官方中文(兼容性
 
 编译版本信息时`BLOCK`哪里可能会报错,把后边字符里的`0x`去除再编译即可
 
+# 卸载
+
+先关闭`VMware Workstation`
+
+移除`[安装目录]\VMware\VMware Workstation\messages`下的`zh_CN`文件夹
+
+转到`%APPDATA%\VMware`下的`preferences.ini`移除`pref.locale = "zh_CN"`
+
 # 鸣谢
 
 - [dbohdan/initool](https://github.com/dbohdan/initool): 用于读写ini,项目内直接包含了其二进制文件,以及开源协议(MIT)
 - [wzsx150/ResourceHacker_CN](https://github.com/wzsx150/ResourceHacker_CN): `ResourceHacker`的汉化,同时也感谢原作者
-- [gandli/vmware-downloads](https://github.com/gandli/vmware-downloads): 提供`VMware`的下载链接
+- [gandli/vmware-downloads](https://github.com/gandli/vmware-downloads): 提供`VMware Workstation`的下载链接
+- [VMware Workstation/Fusion Pro Collection](https://archive.org/details/vmwareworkstationarchive): 收录了`VMware Workstation`的许多版本
 - [Kuroba-Sayuki/VMware-Workstation-Chinese-Localization](https://github.com/Kuroba-Sayuki/VMware-Workstation-Chinese-Localization): 汉化思路参考
-- `deepseek`: 新增文本的翻译
+- [deepseek](https://chat.deepseek.com): 新增文本的翻译

@@ -28,14 +28,21 @@ if __name__ == "__main__":
     os.chdir(os.path.dirname(__file__))
 
     if not all(
-        os.path.isfile(path) for path in ("base/vmware.vmsg", "new/vmware.vmsg")
+        os.path.isfile(path) for path in ("base/vmware.vmsg", "current/vmware.vmsg")
     ):
-        print("请确保`base`与`new`文件夹下都放有vmware.vmsg")
-    if os.path.exists("out"):
-        shutil.rmtree("out")
-    os.mkdir("out")
+        print("请确保`base`与`current`文件夹下都放有vmware.vmsg")
+    if os.path.exists("dist"):
+        # 清空dist文件夹内文件
+        for name in os.listdir("dist"):
+            path = os.path.join("dist", name)
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                os.remove(path)
+    else:
+        os.mkdir("dist")
     data_base = vmsg_load("base/vmware.vmsg")
-    data_new = vmsg_load("new/vmware.vmsg")
+    data_new = vmsg_load("current/vmware.vmsg")
     data_replace = vmsg_load("replace/vmware.vmsg")
     data_base |= data_replace
     len_base = len(data_base)
@@ -64,16 +71,15 @@ if __name__ == "__main__":
         }
         print("清理完成!")
     print("开始生成补丁...")
-    os.mkdir("out/zh_CN")
-    vmsg_save(data_base, "out/zh_CN/vmware.vmsg")
-    print("将新的vmware.vmsg生成至: 'out/vmware.vmsg'")
-    shutil.copytree("replace/initool", "out/initool")
-    print("将initool复制至: `out/initool`")
-    shutil.copyfile("replace/安装汉化.bat", "out/安装汉化.bat")
-    print("将安装脚本复制至: `out/安装汉化.bat`")
-    # TODO: 复制时计算哈希值,保存至批处理方便安装时校验文件 <=(不想弄了)
-    shutil.copyfile("replace/vmappsdk-zh_CN.dll", "out/zh_CN/vmappsdk-zh_CN.dll")
-    shutil.copyfile("replace/vmui-zh_CN.dll", "out/zh_CN/vmui-zh_CN.dll")
+    os.mkdir("dist/zh_CN")
+    vmsg_save(data_base, "dist/zh_CN/vmware.vmsg")
+    print("将新的vmware.vmsg生成至: 'dist/vmware.vmsg'")
+    shutil.copytree("replace/initool", "dist/initool")
+    print("将initool复制至: `dist/initool`")
+    shutil.copyfile("replace/安装汉化.bat", "dist/安装汉化.bat")
+    print("将安装脚本复制至: `dist/安装汉化.bat`")
+    shutil.copyfile("replace/vmappsdk-zh_CN.dll", "dist/zh_CN/vmappsdk-zh_CN.dll")
+    shutil.copyfile("replace/vmui-zh_CN.dll", "dist/zh_CN/vmui-zh_CN.dll")
     print(
-        "将dll文件复制至: `out/zh_CN/vmappsdk-zh_CN.dll` 与 `out/zh_CN/vmui-zh_CN.dll`"
+        "将dll文件复制至: `dist/zh_CN/vmappsdk-zh_CN.dll` 与 `dist/zh_CN/vmui-zh_CN.dll`"
     )
